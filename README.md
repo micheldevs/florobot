@@ -1,18 +1,9 @@
-<style>
-header {
-  color: #29d18d;
-  text-align: center;
-}
-</style>
-
-<header>
-<h1>
+<h1 style="color: #29d18d; text-align: center;">
 F L O R O B O T<br/>
 A simple funny Telegram Bot, written in Go<br/>
 By @micheldevs<br/>
 ₍ᐢ. .ᐢ₎ ₊˚⊹♡
-</h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-</header>
+</h1>
 
 Florobot is a simple implementation of a Telegram bot written in Go, focused in entertainment with commands to crack jokes, roast people if it gets insulted, answer questions with random facts, play to the russian roulette with friends or scrape contents of webs to retrieve it later through commands or notifications.
 

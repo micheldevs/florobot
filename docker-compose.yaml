@@ -1,0 +1,24 @@
+name: 'florobot'
+
+services:
+
+    florobot:
+        build: .
+        volumes:
+            - ./assets:/app/assets
+            - ./apps/sqlite:/app/apps/sqlite
+        environment:
+            # BOT SETTINGS
+            TG_BOT_APITOKEN: ${TG_BOT_APITOKEN:-<YOUR-KEY-HERE>}
+            TG_BOT_SEND_NUM_RETRIES: ${TG_BOT_SEND_NUM_RETRIES:-5}
+            TG_BOT_LANGUAGE: ${TG_BOT_LANGUAGE:-en}
+            TG_BOT_DEBUG: ${TG_BOT_DEBUG:-true}
+            # optional
+            TG_BOT_BACKGROUND_TASKS_CRON: ${TG_BOT_BACKGROUND_TASKS_CRON:-@daily}
+        restart: always
+        networks:
+            - florobotnetwork
+
+networks:
+  florobotnetwork:
+    driver: bridge

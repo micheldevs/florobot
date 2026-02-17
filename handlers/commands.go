@@ -26,7 +26,7 @@ func Commands(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 			services.TellJoke(bot, update)
 		case "insult":
 			tg.SendTxtMsg(bot, update.Message.Chat.ID, i18n.Trans("insultCmdText"))
-		case "pregunta":
+		case "question":
 			tg.SendTxtMsg(bot, update.Message.Chat.ID, i18n.Trans("questionCmdText"))
 		case "rrstart":
 			services.StartRussianRouletteMatch(bot, update)

@@ -13,7 +13,7 @@ import (
 )
 
 func Messages(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
-	regexQuestion, _ := regexp.Compile(`[\w\s.,:;\-+@]*¿[\w\s,]*?`)
+	regexQuestion, _ := regexp.Compile(`[\w\s.,:;\-+@]*¿{0,1}[\w\s,]*?`)
 
 	if utils.MatchTextInWordList(update.Message.Text, utils.GetKeywordsNotBlacklisted(fmt.Sprintf("assets/csv/%s/jokes_keywords.csv", i18n.GetCurrLang()), update.Message.Chat.ID)) {
 		services.TellJoke(bot, update)

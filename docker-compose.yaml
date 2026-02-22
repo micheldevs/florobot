@@ -2,11 +2,24 @@ name: 'florobot'
 
 services:
 
+    postgres:
+        image: postgres:14-alpine
+        volumes:
+            - ./apps/postgres:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB:-florobot_db}
+            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+        restart: always
+        ports:
+            - 5432:5432
+        networks:
+            - florobotnetwork
+
     florobot:
         build: .
         volumes:
             - ./assets:/app/assets
-            - ./apps/sqlite:/app/apps/sqlite
         environment:
             # BOT SETTINGS
             TG_BOT_APITOKEN: ${TG_BOT_APITOKEN:-<YOUR-KEY-HERE>}
@@ -15,6 +28,12 @@ services:
             TG_BOT_DEBUG: ${TG_BOT_DEBUG:-true}
             # optional
             TG_BOT_BACKGROUND_TASKS_CRON: ${TG_BOT_BACKGROUND_TASKS_CRON:-@daily}
+            # DATABASE SETTINGS
+            POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
+            POSTGRES_USER: ${POSTGRES_USER:-postgres}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+            POSTGRES_DB: ${POSTGRES_DB:-florobot_db}
+            POSTGRES_PORT: ${POSTGRES_PORT:-5432}
         restart: always
         networks:
             - florobotnetwork

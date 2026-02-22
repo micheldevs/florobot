@@ -3,11 +3,7 @@ FROM golang:1.24.13-alpine AS builder
 WORKDIR /app
 COPY /. ./
 
-# line 7 to 9 needed to use `github.com/mattn/go-sqlite3`, an indirect dependency of gorm
-RUN apk update \
- && apk add build-base \
- && go env -w CGO_ENABLED=1 \
- && go mod download \
+RUN go mod download \
  && go build -o /florobot .
 
 FROM alpine:3.16.2
